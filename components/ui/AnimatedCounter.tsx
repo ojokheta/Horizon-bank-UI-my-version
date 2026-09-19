@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import CountUp from 'react-countup';
 
 const AnimatedCounter = ({ amount }: { amount: number }) => {
@@ -7,7 +7,8 @@ const AnimatedCounter = ({ amount }: { amount: number }) => {
       <CountUp
         end={amount}
         decimal="."
-        prefix="$"
+        separator=","
+        prefix="₦"
         duration={1}
         decimals={2}
       />

@@ -8,6 +8,7 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
     "./constants/**/*.{ts,tsx}",
+    "./lib/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -20,21 +21,58 @@ const config = {
     },
     extend: {
       colors: {
-        fill: {
-          1: "rgba(255, 255, 255, 0.10)",
+        sage: "#EBF6C4",
+        forest: "#4B672D",
+        background: "rgb(var(--background) / <alpha-value>)",
+        foreground: "rgb(var(--foreground) / <alpha-value>)",
+        card: {
+          DEFAULT: "rgb(var(--card) / <alpha-value>)",
+          foreground: "rgb(var(--card-foreground) / <alpha-value>)",
         },
-        bankGradient: "#0179FE",
-        indigo: {
-          500: "#6172F3",
-          700: "#3538CD",
+        popover: {
+          DEFAULT: "rgb(var(--popover) / <alpha-value>)",
+          foreground: "rgb(var(--popover-foreground) / <alpha-value>)",
+        },
+        primary: {
+          DEFAULT: "rgb(var(--primary) / <alpha-value>)",
+          foreground: "rgb(var(--primary-foreground) / <alpha-value>)",
+        },
+        secondary: {
+          DEFAULT: "rgb(var(--secondary) / <alpha-value>)",
+          foreground: "rgb(var(--secondary-foreground) / <alpha-value>)",
+        },
+        muted: {
+          DEFAULT: "rgb(var(--muted) / <alpha-value>)",
+          foreground: "rgb(var(--muted-foreground) / <alpha-value>)",
+        },
+        accent: {
+          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
+          foreground: "rgb(var(--accent-foreground) / <alpha-value>)",
+        },
+        destructive: {
+          DEFAULT: "rgb(var(--destructive) / <alpha-value>)",
+          foreground: "rgb(var(--destructive-foreground) / <alpha-value>)",
         },
         success: {
+          DEFAULT: "rgb(var(--success) / <alpha-value>)",
+          foreground: "rgb(var(--success-foreground) / <alpha-value>)",
           25: "#F6FEF9",
           50: "#ECFDF3",
           100: "#D1FADF",
           600: "#039855",
           700: "#027A48",
           900: "#054F31",
+        },
+        border: "rgb(var(--border) / <alpha-value>)",
+        input: "rgb(var(--input) / <alpha-value>)",
+        ring: "rgb(var(--ring) / <alpha-value>)",
+        fill: {
+          1: "rgba(255, 255, 255, 0.10)",
+        },
+        bankGradient: "#4B672D",
+        indigo: {
+          500: "#6172F3",
+          700: "#3538CD",
         },
         pink: {
           25: "#FEF6FB",
@@ -70,10 +108,12 @@ const config = {
         },
       },
       backgroundImage: {
-        "bank-gradient": "linear-gradient(90deg, #0179FE 0%, #4893FF 100%)",
+        "bank-gradient": "linear-gradient(135deg, #4B672D 0%, #233029 100%)",
         "gradient-mesh": "url('/icons/gradient-mesh.svg')",
         "bank-green-gradient":
-          "linear-gradient(90deg, #01797A 0%, #489399 100%)",
+          "linear-gradient(90deg, #4B672D 0%, #6B8F4E 100%)",
+        "sage-wash":
+          "radial-gradient(circle at top right, rgba(235,246,196,0.45), transparent 42%)",
       },
       boxShadow: {
         form: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
@@ -82,10 +122,20 @@ const config = {
         profile:
           "0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03)",
         creditCard: "8px 10px 16px 0px rgba(0, 0, 0, 0.05)",
+        lift: "0 18px 40px -24px rgba(75, 103, 45, 0.45)",
+      },
+      transitionTimingFunction: {
+        spring: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+        "spring-out": "cubic-bezier(0.22, 1.7, 0.36, 1)",
       },
       fontFamily: {
         inter: "var(--font-inter)",
         "ibm-plex-serif": "var(--font-ibm-plex-serif)",
+      },
+      borderRadius: {
+        lg: "0.9rem",
+        md: "0.7rem",
+        sm: "0.5rem",
       },
       keyframes: {
         "accordion-down": {
@@ -96,10 +146,20 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        shimmer: {
+          "100%": { transform: "translateX(100%)" },
+        },
+        "tab-pop": {
+          "0%": { transform: "scale(0.72)" },
+          "55%": { transform: "scale(1.14)" },
+          "100%": { transform: "scale(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        shimmer: "shimmer 1.4s infinite",
+        "tab-pop": "tab-pop 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
       },
     },
   },

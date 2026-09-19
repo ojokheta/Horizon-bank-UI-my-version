@@ -1,72 +1,88 @@
 'use server';
 
-import { ID } from 'node-appwrite';
-import { createAdminClient, createSessionClient } from '../appwrite';
 import { cookies } from 'next/headers';
 import { parseStringify } from '../utils';
 
+// Temporary local auth: any email/password combo creates a session.
+// Remove this bypass when Appwrite is restored.
+const DEV_SESSION_COOKIE = 'horizon-dev-session';
 
-export const signIn = async ({email, password}: signInProps) => {
+const cookieOptions = {
+  path: '/',
+  httpOnly: true,
+  sameSite: 'lax' as const,
+  secure: process.env.NODE_ENV === 'production',
+};
+
+const buildDevUser = ({
+  email,
+  firstName,
+  lastName,
+}: {
+  email: string;
+  firstName?: string;
+  lastName?: string;
+}) => {
+  const first = firstName?.trim() || email.split('@')[0] || 'Guest';
+  const last = lastName?.trim() || 'User';
+
+  return {
+    $id: 'dev-user',
+    userId: 'dev-user',
+    email,
+    firstName: first,
+    lastName: last,
+    name: `${first} ${last}`.trim(),
+    dwollaCustomerUrl: '',
+    dwollaCustomerId: '',
+    address1: '',
+    city: '',
+    state: '',
+    postalCode: '',
+    dateOfBirth: '',
+    ssn: '',
+  };
+};
+
+const setDevSession = (user: ReturnType<typeof buildDevUser>) => {
+  cookies().set(DEV_SESSION_COOKIE, JSON.stringify(user), cookieOptions);
+};
+
+const getDevSession = () => {
+  const session = cookies().get(DEV_SESSION_COOKIE);
+
+  if (!session?.value) return null;
+
   try {
-    const { account } = await createAdminClient();
-    const response = await account.createEmailPasswordSession(email, password);
-    cookies().set('appwrite-session', response.secret, {
-      path: '/',
-      httpOnly: true,
-      sameSite: 'strict',
-      secure: true,
-    });
-  
-    return parseStringify(response)
-  } catch (error) {
-    console.error('Error', error);
+    return JSON.parse(session.value);
+  } catch {
+    return null;
   }
+};
+
+export const signIn = async ({ email }: signInProps) => {
+  const user = buildDevUser({ email });
+  setDevSession(user);
+  return parseStringify(user);
 };
 
 export const signUp = async (userData: SignUpParams) => {
-  const { email, password, firstName, lastName } = userData;
-  try {
-    const { account } = await createAdminClient();
-
-    const newUserAccount = await account.create(
-      ID.unique(),
-      email,
-      password,
-      `${firstName} ${lastName}`
-    );
-    const session = await account.createEmailPasswordSession(email, password);
-
-    cookies().set('appwrite-session', session.secret, {
-      path: '/',
-      httpOnly: true,
-      sameSite: 'strict',
-      secure: true,
-    });
-
-    return parseStringify(newUserAccount);
-  } catch (error) {
-    console.error('Error', error);
-  }
+  const user = buildDevUser({
+    email: userData.email,
+    firstName: userData.firstName,
+    lastName: userData.lastName,
+  });
+  setDevSession(user);
+  return parseStringify(user);
 };
 
 export async function getLoggedInUser() {
-  try {
-    const { account } = await createSessionClient();
-    const user = await account.get();
-    return parseStringify(user);
-  } catch (error) {
-    return null;
-  }
+  const user = getDevSession();
+  return user ? parseStringify(user) : null;
 }
 
 export const logoutAccount = async () => {
-  try {
-    const { account } = await createSessionClient();
-
-    cookies().delete('appwrite-session');
-
-    await account.deleteSession('current');
-  } catch (error) {
-    return null;
-  }
-}
+  cookies().delete(DEV_SESSION_COOKIE);
+  cookies().delete('appwrite-session');
+  return true;
+};

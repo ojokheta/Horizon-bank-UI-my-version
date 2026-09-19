@@ -1,9 +1,11 @@
-import React from 'react'
+import TransferFundsPage from '@/components/TransferFundsPage';
 
-const Transfer = () => {
-  return (
-    <div>Transfer</div>
-  )
-}
+const Transfer = ({
+  searchParams,
+}: {
+  searchParams: { from?: string };
+}) => {
+  return <TransferFundsPage initialSource={searchParams.from} />;
+};
 
-export default Transfer
+export default Transfer;
