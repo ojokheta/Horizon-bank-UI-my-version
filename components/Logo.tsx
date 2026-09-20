@@ -10,10 +10,10 @@ const Logo = ({
 }) => {
   return (
     <Image
-      src="/icons/logo.png"
+      src="/logo.png"
       alt="Horizon"
       width={size}
-      height={Math.round(size * 0.75)}
+      height={size}
       className={cn('rounded-md object-contain', className)}
       priority
     />

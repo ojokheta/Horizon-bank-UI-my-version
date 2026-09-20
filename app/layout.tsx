@@ -16,8 +16,11 @@ export const metadata: Metadata = {
   description:
     'Nigerian digital banking with multi-bank aggregation, NIP transfers, and unified Naira tracking.',
   icons: {
-    icon: '/icons/logo.png',
-    apple: '/icons/logo.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/logo.png', type: 'image/png' },
+    ],
+    apple: '/logo.png',
   },
   appleWebApp: {
     capable: true,
