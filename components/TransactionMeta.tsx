@@ -2,32 +2,33 @@ import { cn } from '@/lib/utils';
 import type { TransactionStatus } from '@/types/finance';
 import {
   ArrowDownLeft,
-  ArrowLeftRight,
+  ArrowSwapHorizontal,
   Car,
   Coins,
   FileText,
+  ForkKnife,
+  Mobile,
   Monitor,
   Repeat,
   ShoppingBag,
-  Smartphone,
-  Utensils,
-  Zap,
-} from 'lucide-react';
+  Bolt,
+} from 'reicon-react';
+import type { IconComponent } from 'reicon-react';
 
 export const CategoryIcon = ({ name }: { name: string }) => {
-  const map: Record<string, typeof Monitor> = {
+  const map: Record<string, IconComponent> = {
     monitor: Monitor,
     'arrow-down-left': ArrowDownLeft,
     'shopping-bag': ShoppingBag,
     repeat: Repeat,
     car: Car,
     'file-text': FileText,
-    smartphone: Smartphone,
-    zap: Zap,
-    utensils: Utensils,
+    smartphone: Mobile,
+    zap: Bolt,
+    utensils: ForkKnife,
     coins: Coins,
     plane: Repeat,
-    transfer: ArrowLeftRight,
+    transfer: ArrowSwapHorizontal,
   };
   const Icon = map[name] ?? ShoppingBag;
   return <Icon className="size-4" />;

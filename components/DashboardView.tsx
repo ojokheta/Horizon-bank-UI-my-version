@@ -11,7 +11,7 @@ import { useFinance } from '@/lib/finance-context';
 import { MONTH_LABEL, formatSignedAmount } from '@/lib/finance-utils';
 import { useSimulatedLoading } from '@/lib/use-simulated-loading';
 import { formatAmount, formatDateTime } from '@/lib/utils';
-import { Landmark } from 'lucide-react';
+import { Bank } from 'reicon-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -91,7 +91,7 @@ const DashboardView = () => {
 
         {banks.length === 0 ? (
           <EmptyState
-            icon={Landmark}
+            icon={Bank}
             title="No accounts connected"
             description="Link a CBN-licensed bank or MFB via Open Banking to start aggregating Naira balances."
             actionLabel="Link a bank account"

@@ -20,7 +20,7 @@ import { useToast } from '@/lib/toast';
 import { useSimulatedLoading } from '@/lib/use-simulated-loading';
 import { cn, formatAmount } from '@/lib/utils';
 import type { DestinationType, TransferPayload } from '@/types/finance';
-import { CheckCircle2, Landmark, Loader2 } from 'lucide-react';
+import { Bank, CheckCircle, Loader } from 'reicon-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
@@ -158,7 +158,7 @@ const TransferFundsPage = ({ initialSource }: { initialSource?: string }) => {
           subtext="Move Naira between your banks, to any NUBAN, or via tag/phone."
         />
         <EmptyState
-          icon={Landmark}
+          icon={Bank}
           title="Link a bank to send Naira"
           description="Connect a CBN-licensed bank or MFB to start NIP transfers."
           actionLabel="Link a bank account"
@@ -173,7 +173,7 @@ const TransferFundsPage = ({ initialSource }: { initialSource?: string }) => {
       <section className="page-shell max-w-3xl">
         <div className="surface-card overflow-hidden">
           <div className="bg-sage px-6 py-8 text-center dark:bg-forest">
-            <CheckCircle2 className="mx-auto size-12 text-forest dark:text-sage" />
+            <CheckCircle className="mx-auto size-12 text-forest dark:text-sage" />
             <h1 className="mt-4 text-2xl font-semibold text-forest dark:text-sage">
               NIP transfer sent
             </h1>
@@ -342,7 +342,7 @@ const TransferFundsPage = ({ initialSource }: { initialSource?: string }) => {
                 <div className="rounded-xl border border-border bg-muted/40 px-3 py-2 text-sm">
                   {lookupState === 'loading' ? (
                     <span className="inline-flex items-center gap-2 text-muted-foreground">
-                      <Loader2 className="size-4 animate-spin" />
+                      <Loader className="size-4 animate-spin" />
                       Running NIBSS name enquiry…
                     </span>
                   ) : resolvedName ? (

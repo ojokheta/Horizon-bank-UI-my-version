@@ -1,10 +1,9 @@
 'use client';
 
-import ThemeToggle from '@/components/ThemeToggle';
 import { cn } from '@/lib/utils';
-import { CircleUser } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { UserCircle } from 'reicon-react';
 
 const HeaderActions = ({
   showProfile = true,
@@ -16,7 +15,6 @@ const HeaderActions = ({
 
   return (
     <div className="flex items-center gap-2">
-      <ThemeToggle />
       {showProfile ? (
         <Link
           href="/settings"
@@ -27,7 +25,7 @@ const HeaderActions = ({
               'border-forest bg-forest text-sage dark:border-sage dark:bg-sage dark:text-forest'
           )}
         >
-          <CircleUser className="size-5" />
+          <UserCircle className="size-5" />
         </Link>
       ) : null}
     </div>

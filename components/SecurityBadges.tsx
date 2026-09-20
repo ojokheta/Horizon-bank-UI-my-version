@@ -1,9 +1,9 @@
 import { cn } from '@/lib/utils';
-import { Building2, Landmark, ShieldCheck } from 'lucide-react';
+import { Bank, Building2, ShieldCheck } from 'reicon-react';
 
 const BADGES = [
   { icon: ShieldCheck, label: 'NDIC Insured' },
-  { icon: Landmark, label: 'In partnership with CBN-licensed banks' },
+  { icon: Bank, label: 'In partnership with CBN-licensed banks' },
   { icon: Building2, label: 'NIP secured by NIBSS' },
 ] as const;
 

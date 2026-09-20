@@ -1,14 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Landmark } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { Bank } from 'reicon-react';
+import type { IconComponent } from 'reicon-react';
 
 type EmptyStateProps = {
   title: string;
   description: string;
   actionLabel?: string;
   onAction?: () => void;
-  icon?: LucideIcon;
+  icon?: IconComponent;
   className?: string;
 };
 
@@ -17,7 +17,7 @@ const EmptyState = ({
   description,
   actionLabel,
   onAction,
-  icon: Icon = Landmark,
+  icon: Icon = Bank,
   className,
 }: EmptyStateProps) => {
   return (

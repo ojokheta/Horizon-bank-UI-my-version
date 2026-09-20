@@ -1,29 +1,29 @@
 'use client';
 
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
-  ArrowLeftRight,
-  CircleUser,
+  ArrowSwapHorizontal,
   CreditCard,
   House,
   Plus,
+  UserCircle,
   Wallet,
-} from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import type { LucideIcon } from 'lucide-react';
+} from 'reicon-react';
+import type { IconComponent } from 'reicon-react';
 
 const ITEMS: {
   href: string;
   label: string;
-  icon: LucideIcon;
+  icon: IconComponent;
   plus?: boolean;
 }[] = [
   { href: '/', label: 'Home', icon: House },
   { href: '/my-banks', label: 'Cards', icon: CreditCard },
   { href: '/receive-money', label: 'Add Funds', icon: Wallet, plus: true },
-  { href: '/transaction-history', label: 'Transaction', icon: ArrowLeftRight },
-  { href: '/settings', label: 'Profile', icon: CircleUser },
+  { href: '/transaction-history', label: 'Transaction', icon: ArrowSwapHorizontal },
+  { href: '/settings', label: 'Profile', icon: UserCircle },
 ];
 
 const isItemActive = (pathname: string, href: string) => {
@@ -37,18 +37,15 @@ const TabIcon = ({
   className,
   filled = false,
 }: {
-  icon: LucideIcon;
+  icon: IconComponent;
   plus?: boolean;
   className?: string;
   filled?: boolean;
 }) => (
   <span className={cn('relative inline-flex', className)}>
-    <Icon className="size-6" fill={filled ? 'currentColor' : 'none'} strokeWidth={filled ? 0 : 1.75} />
+    <Icon className="size-6" weight={filled ? 'Filled' : 'Outline'} />
     {plus ? (
-      <Plus
-        className="absolute -right-1.5 -top-1.5 size-3.5"
-        strokeWidth={3}
-      />
+      <Plus className="absolute -right-1.5 -top-1.5 size-3.5" />
     ) : null}
   </span>
 );
@@ -101,12 +98,9 @@ const MobileBottomNav = () => {
                   )}
                 >
                   <span className="relative inline-flex">
-                    <Icon className="size-5" strokeWidth={1.75} />
+                    <Icon className="size-5" />
                     {item.plus ? (
-                      <Plus
-                        className="absolute -right-1.5 -top-1 size-3"
-                        strokeWidth={2.5}
-                      />
+                      <Plus className="absolute -right-1.5 -top-1 size-3" />
                     ) : null}
                   </span>
                 </span>

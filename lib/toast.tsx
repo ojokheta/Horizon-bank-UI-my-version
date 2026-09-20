@@ -1,7 +1,8 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { CheckCircle2, Info, X, XCircle } from 'lucide-react';
+import { CheckCircle, InfoCircle, X, XCircle } from 'reicon-react';
+import type { IconComponent } from 'reicon-react';
 import {
   createContext,
   useCallback,
@@ -31,10 +32,10 @@ type ToastContextValue = {
 
 const ToastContext = createContext<ToastContextValue | null>(null);
 
-const ICONS: Record<ToastTone, typeof CheckCircle2> = {
-  success: CheckCircle2,
+const ICONS: Record<ToastTone, IconComponent> = {
+  success: CheckCircle,
   error: XCircle,
-  info: Info,
+  info: InfoCircle,
 };
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {

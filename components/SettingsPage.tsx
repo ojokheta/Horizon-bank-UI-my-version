@@ -4,16 +4,15 @@ import HeaderBox from '@/components/HeaderBox';
 import KycBadge from '@/components/KycBadge';
 import SecurityBadges from '@/components/SecurityBadges';
 import { TableSkeleton } from '@/components/Skeletons';
-import ThemeToggle from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { logoutAccount } from '@/lib/actions/user.actions';
 import { useFinance } from '@/lib/finance-context';
 import { kycTiers } from '@/lib/nigeria';
 import { useSimulatedLoading } from '@/lib/use-simulated-loading';
 import { formatAmount } from '@/lib/utils';
-import { Landmark, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { Bank, Logout } from 'reicon-react';
 
 const SettingsPage = ({ user }: { user: User }) => {
   const loading = useSimulatedLoading();
@@ -51,7 +50,7 @@ const SettingsPage = ({ user }: { user: User }) => {
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <HeaderBox
           title="Settings"
-          subtext="Profile, KYC, appearance, and security for your Horizon account."
+          subtext="Profile, KYC, and security for your Horizon account."
         />
         <SecurityBadges />
       </div>
@@ -104,20 +103,9 @@ const SettingsPage = ({ user }: { user: User }) => {
             href="/my-banks"
             className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-forest dark:text-sage"
           >
-            <Landmark className="size-4" />
+            <Bank className="size-4" />
             Manage linked banks
           </Link>
-        </article>
-
-        <article className="surface-card p-6">
-          <h2 className="text-lg font-semibold">Appearance</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Tap the sun or moon in the top-right corner to switch between light
-            and dark mode.
-          </p>
-          <div className="mt-5">
-            <ThemeToggle />
-          </div>
         </article>
 
         <article className="surface-card p-6">
@@ -132,7 +120,7 @@ const SettingsPage = ({ user }: { user: User }) => {
             onClick={handleLogout}
             className="mt-5 gap-2"
           >
-            <LogOut className="size-4" />
+            <Logout className="size-4" />
             Sign out
           </Button>
         </article>

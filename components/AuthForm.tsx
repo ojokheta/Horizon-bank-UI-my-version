@@ -2,13 +2,12 @@
 import AuthDoodle from '@/components/AuthDoodle';
 import CustomInput from './CustomInput';
 import Logo from './Logo';
-import ThemeToggle from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { signIn, signUp } from '@/lib/actions/user.actions';
 import { authFormSchema, cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2 } from 'lucide-react';
+import { Loader } from 'reicon-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -59,9 +58,6 @@ const AuthForm = ({ type }: { type: string }) => {
       >
         <div className="relative h-[30vh] min-h-[190px] bg-forest md:hidden">
           <AuthDoodle />
-          <div className="absolute right-4 top-[max(0.9rem,env(safe-area-inset-top))] z-10">
-            <ThemeToggle className="border-white/20 bg-white/15 text-sage hover:bg-white/25" />
-          </div>
         </div>
 
         <section
@@ -192,7 +188,7 @@ const AuthForm = ({ type }: { type: string }) => {
             >
               {isLoading ? (
                 <>
-                  <Loader2 size={20} className="animate-spin" />
+                  <Loader size={20} className="animate-spin" />
                   &nbsp;Loading...
                 </>
               ) : isSignIn ? (

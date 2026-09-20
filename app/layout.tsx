@@ -1,4 +1,3 @@
-import { ThemeProvider } from '@/lib/theme';
 import { ToastProvider } from '@/lib/toast';
 import type { Metadata, Viewport } from 'next';
 import { IBM_Plex_Serif, Inter } from 'next/font/google';
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     title: 'Horizon',
-    statusBarStyle: 'default',
+    statusBarStyle: 'black-translucent',
   },
   formatDetection: {
     telephone: false,
@@ -36,24 +35,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#F9FAFB' },
-    { media: '(prefers-color-scheme: dark)', color: '#121A15' },
-  ],
+  themeColor: '#121A15',
 };
-
-const themeInitScript = `
-(function() {
-  try {
-    var stored = localStorage.getItem('horizon-theme');
-    var theme = stored === 'light' || stored === 'dark'
-      ? stored
-      : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    document.documentElement.style.colorScheme = theme;
-  } catch (e) {}
-})();
-`;
 
 export default function RootLayout({
   children,
@@ -61,14 +44,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
+    <html lang="en" className="dark">
       <body className={`${inter.variable} ${ibmPlexSerif.variable} antialiased`}>
-        <ThemeProvider>
-          <ToastProvider>{children}</ToastProvider>
-        </ThemeProvider>
+        <ToastProvider>{children}</ToastProvider>
       </body>
     </html>
   );

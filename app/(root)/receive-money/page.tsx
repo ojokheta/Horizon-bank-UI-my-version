@@ -9,7 +9,7 @@ import { copyText } from '@/lib/finance-utils';
 import { useToast } from '@/lib/toast';
 import { useSimulatedLoading } from '@/lib/use-simulated-loading';
 import { formatAmount } from '@/lib/utils';
-import { Check, Copy, Link2, QrCode } from 'lucide-react';
+import { Check, Copy, Link2, Qr } from 'reicon-react';
 import { useMemo, useState } from 'react';
 
 const ReceiveMoneyPage = () => {
@@ -104,7 +104,7 @@ const ReceiveMoneyPage = () => {
 
         <article className="surface-card p-6">
           <div className="flex items-center gap-2">
-            <QrCode className="size-5 text-forest dark:text-sage" />
+            <Qr className="size-5 text-forest dark:text-sage" />
             <h2 className="text-lg font-semibold">Scan to pay</h2>
           </div>
           <p className="mt-1 text-sm text-muted-foreground">

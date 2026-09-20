@@ -4,14 +4,14 @@ import { sidebarLinks } from '@/constants';
 import { logoutAccount } from '@/lib/actions/user.actions';
 import { cn } from '@/lib/utils';
 import {
-  ArrowLeftRight,
+  ArrowSwapHorizontal,
+  Bank,
   Download,
   History,
-  Landmark,
-  LayoutDashboard,
-  LogOut,
+  Layout,
+  Logout,
   Settings,
-} from 'lucide-react';
+} from 'reicon-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import KycBadge from './KycBadge';
@@ -20,10 +20,10 @@ import SecurityBadges from './SecurityBadges';
 import { useFinance } from '@/lib/finance-context';
 
 const ICONS = {
-  '/': LayoutDashboard,
-  '/my-banks': Landmark,
+  '/': Layout,
+  '/my-banks': Bank,
   '/transaction-history': History,
-  '/payment-transfer': ArrowLeftRight,
+  '/payment-transfer': ArrowSwapHorizontal,
   '/receive-money': Download,
   '/settings': Settings,
 } as const;
@@ -52,7 +52,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
               item.route === '/'
                 ? pathname === '/'
                 : pathname === item.route || pathname.startsWith(`${item.route}/`);
-            const Icon = ICONS[item.route as keyof typeof ICONS] ?? LayoutDashboard;
+            const Icon = ICONS[item.route as keyof typeof ICONS] ?? Layout;
             return (
               <Link
                 href={item.route}
@@ -98,7 +98,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
             onClick={handleLogout}
             className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-muted-foreground transition hover:bg-card hover:text-foreground"
           >
-            <LogOut className="size-4" />
+            <Logout className="size-4" />
             <span className="max-xl:hidden">Sign out</span>
           </button>
         </div>

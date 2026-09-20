@@ -16,7 +16,7 @@ import { accountTypeLabel } from '@/lib/nigeria';
 import { useToast } from '@/lib/toast';
 import { formatAmount } from '@/lib/utils';
 import type { BankAccount } from '@/types/finance';
-import { ArrowLeftRight, Copy, FileText, Star, Unlink } from 'lucide-react';
+import { ArrowSwapHorizontal, Copy, FileText, LinkBroken, Star } from 'reicon-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -93,7 +93,7 @@ const BankAccountCard = ({ bank }: { bank: BankAccount }) => {
             size="sm"
             onClick={() => router.push(`/payment-transfer?from=${bank.id}`)}
           >
-            <ArrowLeftRight className="mr-1 size-3.5" />
+            <ArrowSwapHorizontal className="mr-1 size-3.5" />
             Transfer
           </Button>
           <Button variant="outline" size="sm" onClick={copyAccount}>
@@ -116,7 +116,7 @@ const BankAccountCard = ({ bank }: { bank: BankAccount }) => {
           </Button>
           {bank.isPrimary ? (
             <Button variant="outline" size="sm" onClick={() => setConfirmOpen(true)}>
-              <Unlink className="mr-1 size-3.5" />
+              <LinkBroken className="mr-1 size-3.5" />
               Unlink
             </Button>
           ) : (

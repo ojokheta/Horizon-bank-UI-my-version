@@ -21,7 +21,7 @@ import { TRANSACTION_CATEGORIES } from '@/lib/mock-data';
 import { useSimulatedLoading } from '@/lib/use-simulated-loading';
 import { formatDateTime } from '@/lib/utils';
 import type { TransactionStatus } from '@/types/finance';
-import { Download, ReceiptText, Search } from 'lucide-react';
+import { Download, ReceiptText, Search } from 'reicon-react';
 import { useMemo, useState } from 'react';
 
 const PAGE_SIZE = 8;
