@@ -4,13 +4,13 @@ import { sidebarLinks } from '@/constants';
 import { logoutAccount } from '@/lib/actions/user.actions';
 import { cn } from '@/lib/utils';
 import {
-  ArrowSwapHorizontal,
+  MoneySend3,
+  MoneyRecive,
   Bank,
-  Download,
-  History,
-  Layout,
+  Receipt2,
+  HomeSmile,
   Logout,
-  Settings,
+  Setting2,
 } from 'reicon-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -20,12 +20,12 @@ import SecurityBadges from './SecurityBadges';
 import { useFinance } from '@/lib/finance-context';
 
 const ICONS = {
-  '/': Layout,
+  '/': HomeSmile,
   '/my-banks': Bank,
-  '/transaction-history': History,
-  '/payment-transfer': ArrowSwapHorizontal,
-  '/receive-money': Download,
-  '/settings': Settings,
+  '/transaction-history': Receipt2,
+  '/payment-transfer':MoneySend3,
+  '/receive-money': MoneyRecive,
+  '/settings': Setting2,
 } as const;
 
 const Sidebar = ({ user }: SiderbarProps) => {
@@ -52,18 +52,19 @@ const Sidebar = ({ user }: SiderbarProps) => {
               item.route === '/'
                 ? pathname === '/'
                 : pathname === item.route || pathname.startsWith(`${item.route}/`);
-            const Icon = ICONS[item.route as keyof typeof ICONS] ?? Layout;
+            const Icon = ICONS[item.route as keyof typeof ICONS] ?? HomeSmile;
             return (
               <Link
                 href={item.route}
                 key={item.label}
                 className={cn(
-                  'sidebar-link text-muted-foreground transition hover:bg-sage/60 hover:text-forest dark:hover:bg-forest/40 dark:hover:text-sage',
-                  isActive &&
-                    'bg-forest text-sage shadow-sm dark:bg-sage dark:text-forest'
+                  'sidebar-link text-muted-foreground transition',
+                  isActive
+                    ? 'cursor-default bg-forest text-sage shadow-sm dark:bg-sage dark:text-forest'
+                    : 'hover:bg-sage/60 hover:text-forest dark:hover:bg-forest/40 dark:hover:text-sage'
                 )}
               >
-                <Icon className="size-5" />
+                <Icon className="size-5" weight={isActive ? 'Filled' : 'Outline'} />
                 <p
                   className={cn(
                     'sidebar-label',
