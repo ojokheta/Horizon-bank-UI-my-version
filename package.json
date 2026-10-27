@@ -6,13 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "remotion:studio": "remotion studio remotion/index.ts",
+    "remotion:render": "remotion render remotion/index.ts HorizonPromo out/horizon-promo.mp4 --codec=h264 --crf=16 --pixel-format=yuv420p",
+    "remotion:render-prores": "remotion render remotion/index.ts HorizonPromo out/horizon-promo.mov --codec=prores --prores-profile=prores4444",
+    "remotion:render-gif": "remotion render remotion/index.ts HorizonPromo out/horizon-promo.gif --every-nth-frame=2 --codec=gif"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@remotion/bundler": "^4.0.534",
+    "@remotion/renderer": "^4.0.534",
     "@sentry/nextjs": "^8.26.0",
     "chart.js": "^4.4.3",
     "class-variance-authority": "^0.7.0",
@@ -26,11 +32,13 @@
     "react-dom": "^18",
     "react-hook-form": "^7.52.2",
     "reicon-react": "^1.2.5",
+    "remotion": "^4.0.534",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@remotion/cli": "^4.0.534",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
